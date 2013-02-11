@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('America/New_York');
 
-require_once('class.phpmailer.php');
+require_once("class.phpmailer.php");
 require_once("class.smtp.php"); // optional, gets called from within class.phpmailer.php if not already loaded
 
 $mail = new PHPMailer();
@@ -21,28 +21,7 @@ $mail->Password   = 'Keqa4VVj3hUsnu';      // SMTP account password
 $mail->AddAddress($email_to);
 $mail->Subject = $email_subject;
 
-
-//$services = ;  // not required
-			
-
 if(isset($_POST['email'])) {
-
-	function died($error) {
-		// your error code can go here
-		echo "We are very sorry, but there were error(s) found with the form you submitted. ";
-		echo "These errors appear below.<br /><br />";
-		echo $error."<br /><br />";
-		echo "Please go back and fix these errors.<br /><br />";
-		die();
-	}
-
-	// validation expected data exists
-	if(!isset($_POST['full_name']) ||
-		!isset($_POST['phone']) ||
-		!isset($_POST['email']) ||
-		!isset($_POST['message'])) {
-		died('We are sorry, but there appears to be a problem with the form you submitted.');
-	}
 
 	$full_name = $_POST['full_name']; // required
 	$phone = $_POST['phone']; // not required
@@ -111,9 +90,12 @@ if(isset($_POST['email'])) {
 	$mail->FromName   = $_POST['full_name'];
 
 	if(!$mail->Send()) {
-		died("Mailer Error: " . $mail->ErrorInfo);
+		echo "false";
 	} else {
-		echo "Thank you for contacting Hoffman Lawn Care. We will be in touch with you very soon.";
+		echo "true";
 	}
+	
+} else {
+	echo "false";
 }
 ?>

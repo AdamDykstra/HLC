@@ -22,11 +22,18 @@
     <link href='http://fonts.googleapis.com/css?family=Ubuntu|Exo:500' rel='stylesheet' type='text/css'>
     <script src="javascripts/modernizr.foundation.js">
 </script>
+    <script src="javascripts/jquery.js">
+</script>
+    <script src="javascripts/foundation.min.js">
+</script><!-- Initialize JS Plugins -->
+
+    <script src="javascripts/app.js">
+</script>
 </head>
 
 <body>
     <div id="page">
-           <div class="row header">
+        <div class="row header">
             <div class="twelve columns">
                 <div id="logo"><img src="Images/logo.png" alt="logo"></div><a id="contact-us-link" href="contact.html">Contact Us!</a>
             </div>
@@ -34,16 +41,15 @@
             <div id="skyline-divider"><img src="Images/cityscape.png" alt="cityscape"></div>
         </div>
 
-
         <div class="row">
             <div class="twelve columns">
                 <div id="nav">
-                    <a id="nav-home" href="index.html">Home</a><a id="nav-service" href="service.html">Our Services</a><a id="nav-contact" href="contact.html">Contact Info</a><div class="fb-like" id="fb-like" data-href="https://www.facebook.com/HoffmanLawnCare" data-send="true" data-width="250" data-show-faces="false" data-font="tahoma"></div>
+                    <a id="nav-home" href="index.html">Home</a><a id="nav-service" href="service.html">Our Services</a><a id="nav-contact" href="contact.html">Contact Info</a>
+
+                    <div class="fb-like" id="fb-like" data-href="https://www.facebook.com/HoffmanLawnCare" data-send="true" data-width="250" data-show-faces="false" data-font="tahoma"></div>
                 </div>
             </div>
         </div>
-
-
 
         <div class="row">
             <div id="main-info">
@@ -54,91 +60,120 @@
 
                     <p><strong>Phone:</strong> 616.893.3503</p>
 
-                    <p><strong>E-mail:</strong> <a id="email-link-contact" href="mailto:reed@hoffmanlawncare.com"><u>reed@hoffmanlawncare.com</u></a>
+                    <p><strong>E-mail:</strong> <a id="email-link-contact" href="mailto:reed@hoffmanlawncare.com"><u>reed@hoffmanlawncare.com</u></a></p>
 
                     <p><strong>Fax:</strong> 616.977.5773</p>
 
                     <p><strong>Mailing Address:</strong> 3420 Broadmoor Ave SE, Kentwood, MI 49512</p>
                 </div>
             </div>
-          
-          
-          <div class="six columns">
-                <form method="post" action="send_form_email.php" id="contactform">
+
+            <div class="six columns">
+            	<div id="formResponse" style="display: none;"></div>
+                <form id="contactform">
                     <table width="450px">
                         <tr>
                             <td valign="top"><label for="full_name">Full Name *</label></td>
 
-                            <td valign="top"><input type="text" name="full_name" maxlength="100" size="30"></td>
+                            <td valign="top"><input type="text" id="full_name" name="full_name" maxlength="100" size="30"></td>
                         </tr>
-                        
+
                         <tr>
                             <td valign="top"><label for="phone">Phone Number *</label></td>
 
-                            <td valign="top"><input type="text" name="phone" maxlength="20" size="30"></td>
+                            <td valign="top"><input type="text" id="phone" name="phone" maxlength="20" size="30"></td>
                         </tr>
 
                         <tr>
                             <td valign="top"><label for="email">Email Address *</label></td>
 
-                            <td valign="top"><input type="text" name="email" maxlength="80" size="30"></td>
+                            <td valign="top"><input type="text" id="email" name="email" maxlength="80" size="30"></td>
                         </tr>
-                        
+
                         <tr>
                             <td valign="top"><label for="service-checkbox">Services *</label></td>
 
                             <td>
-                            
-                            <ul id="checklist">
-	                            <li><input type="checkbox" name="services[]" value="Spring">Spring Services</li>  
-	                            <li><input type="checkbox" name="services[]" value="Summer">Summer Services</li>
-	                            <li><input type="checkbox" name="services[]" value="Fall">Fall Services</li>
-	                            <li><input type="checkbox" name="services[]" value="Winter">Snow Removal and Salting</li>
-	                            <li><input type="checkbox" name="services[]" value="Pruning">Pruning/Trimming Services</li>
-	                            <li><input type="checkbox" name="services[]" value="Fertilization">Fertilization</li>
-	                            <li><input type="checkbox" name="services[]" value="Other">Other</li>
-                            </ul>
+                                <ul id="checklist">
+                                    <li><input type="checkbox" name="services[]" value="Spring">Spring Services</li>
+
+                                    <li><input type="checkbox" name="services[]" value="Summer">Summer Services</li>
+
+                                    <li><input type="checkbox" name="services[]" value="Fall">Fall Services</li>
+
+                                    <li><input type="checkbox" name="services[]" value="Winter">Snow Removal and Salting</li>
+
+                                    <li><input type="checkbox" name="services[]" value="Pruning">Pruning/Trimming Services</li>
+
+                                    <li><input type="checkbox" name="services[]" value="Fertilization">Fertilization</li>
+
+                                    <li><input type="checkbox" name="services[]" value="Other">Other</li>
+                                </ul>
                             </td>
-                            </tr>
-                        
+                        </tr>
+
                         <tr>
                             <td valign="top"><label for="comments">Message</label></td>
 
                             <td valign="top">
-                            <textarea name="message" maxlength="1000" cols="25" rows="6">
+                            <textarea id="message" name="message" maxlength="1000" cols="25" rows="6">
 </textarea></td>
                         </tr>
 
                         <tr>
-                            <td colspan="2" style="text-align:center">
-                                <input type="submit" value="Submit">
-                            </td>
+                            <td colspan="2" style="text-align:center"><input type="submit" value="Submit" name="myFormSubmitted"></td>
                         </tr>
                     </table>
                 </form>
             </div>
         </div>
 
-
-
-            <div class="row">
-                <div id="bottom-quote">
-                    <div class="twelve columns">
-                        <h4>"For all of your property needs"</h4>
-                    </div>
+        <div class="row">
+            <div id="bottom-quote">
+                <div class="twelve columns">
+                    <h4>"For all of your property needs"</h4>
                 </div>
             </div>
-            
-            
-            <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-        </div>
-    
+        </div><script type="text/javascript">
+
+        <!--jQuery Section-->
+        $("#contactform").submit(function() {
+                        
+            $.ajax({
+                type: 'POST',
+                url: 'sendemail.php',
+                data: 
+                    {
+                        full_name: $('#full_name').val(), 
+                        phone: $('#phone').val(), 
+                        email: $('#email').val(), 
+                        checkbox: $('input[name="services[]"]:checked'),
+                        message: $('#message').val()
+                    },
+                success: function(data) {
+                    if(data == "true") {
+                        $("#contactform").hide();
+                        $("#formResponse").html("<p>Success! Your message has been sent, thanks!<\/p>").fadeIn('100');
+                    } else {
+	                    alert("Email was not sent.  Please check your info agian.");
+                    }
+                }
+            });       
+                   
+            return false;
+        });
+
+        </script>
+
+        <div id="fb-root"></div><script>
+(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+    </div>
 </body>
 </html>
