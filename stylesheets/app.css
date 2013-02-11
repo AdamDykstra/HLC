@@ -84,6 +84,7 @@ p {
 	margin-top:50px;
 }
 
+.orbit-wrapper { width: auto; height: auto; position: relative; }
 
 /* -----------------------------------------
    index.html
