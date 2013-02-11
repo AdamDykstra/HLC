@@ -86,6 +86,23 @@ p {
 
 .orbit-wrapper { width: auto; height: auto; position: relative; }
 
+#nav-home {
+	padding-right: 30px;
+}
+
+#nav-contact {
+	padding-right: 30px;
+}
+
+#nav-service {
+	padding-right: 30px;
+}
+
+#fb-like {
+	padding-right: 30px;
+	vertical-align: -8px;
+}
+
 /* -----------------------------------------
    index.html
 ----------------------------------------- */

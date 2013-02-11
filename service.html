@@ -9,6 +9,8 @@
 <head>
     <meta charset="utf-8"><!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Welcome to Hoffman Lawn Care's Services page. Here you will find information on all the services we provide.">
+    <meta name="title" content="Hoffman Lawn Care | Services">
 
     <title>Hoffman Lawn Care | Services</title><!-- Included CSS Files (Uncompressed) -->
     <!--
@@ -24,54 +26,47 @@
 
 <body>
     <div id="page">
-          <div class="row header">
+             <div class="row header">
             <div class="twelve columns">
-            <div id="logo">
-                <img src="Images/logo.png"> 
+                <div id="logo"><img src="Images/logo.png" alt="logo"></div><a id="contact-us-link" href="contact.html">Contact Us!</a>
             </div>
-            <a id="contact-us-link" href="contact.html">Contact Us!</a>
-            </div>
-            <div id="skyline-divider">
-	            <img src="Images/cityscape.png">
-            </div>
-        </div>
 
+            <div id="skyline-divider"><img src="Images/cityscape.png" alt="cityscape"></div>
+        </div>
         <div class="row">
-            <div class="five columns">
+            <div class="twelve columns">
                 <div id="nav">
-                    <a href="index.html">Home</a> | <a href="service.html">Our Services</a> | <a href="contact.html">Contact Info</a>
+                    <a id="nav-home" href="index.html">Home</a><a id="nav-service" href="service.html">Our Services</a><a id="nav-contact" href="contact.html">Contact Info</a><div class="fb-like" id="fb-like" data-href="https://www.facebook.com/HoffmanLawnCare" data-send="true" data-width="250" data-show-faces="false" data-font="tahoma"></div>
                 </div>
             </div>
-
-            <div class="seven columns"></div>
         </div>
         <div class="row">
         <div id="row1">
             <div class="six columns">
-            	<a href="spring.html"><img src="Images/spring-thumb.png"><span id="image-label">Spring Services</span></a>
+            	<a href="spring.html"><img src="Images/spring-thumb.png" alt="spring-thumb"><span id="image-label">Spring Services</span></a>
             </div>
             <div class="six columns">
-	            <a href="fall.html"><img src="Images/fall-thumb.png"><span id="image-label">Fall Services</span></a>
+	            <a href="fall.html"><img src="Images/fall-thumb.png" alt="fall-thumb"><span id="image-label">Fall Services</span></a>
             </div>
         </div>
         </div>
         <div class="row">
         <div id="row2">
             <div class="six columns">
-            	<a href="summer.html"><img src="Images/summer-thumb.png"><span id="image-label">Summer Services</span></a>
+            	<a href="summer.html"><img src="Images/summer-thumb.png" alt="summer-thumb"><span id="image-label">Summer Services</span></a>
             </div>
             <div class="six columns">
-	            <a href="winter.html"><img src="Images/winter-thumb.png"><span id="image-label">Winter Services</span></a>
+	            <a href="winter.html"><img src="Images/winter-thumb.png" alt="winter-thumb"><span id="image-label">Winter Services</span></a>
             </div>
         </div>
         </div>
         <div class="row">
         <div id="row3">
             <div class="six columns">
-            	<a href="pruning.html"><img src="Images/pruning-thumb.png"><span id="image-label">Pruning/Trimming Services</span></a>
+            	<a href="pruning.html"><img src="Images/pruning-thumb.png" alt="pruning-thumb"><span id="image-label">Pruning/Trimming Services</span></a>
             </div>
             <div class="six columns">
-	            <a href="fertilization.html"><img src="Images/fert-thumb.png"><span id="image-label">Fertilization Services</span></a>
+	            <a href="fertilization.html"><img src="Images/fert-thumb.png" alt="fert-thumb"><span id="image-label">Fertilization Services</span></a>
             </div>
         </div>
         </div>
@@ -91,6 +86,14 @@
                 </div>
             </div>
         </div>
+        <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     </div>
 </body>
 </html>
