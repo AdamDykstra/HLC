@@ -100,16 +100,13 @@ p {
 
 #fb-like {
 	padding-right: 30px;
-	vertical-align: -8px;
+	vertical-align: -7px;
 }
+
 
 /* -----------------------------------------
    index.html
 ----------------------------------------- */
-#image-text {
-	
-}
-
 #label {
 	font-family:'Exo',sans-serif;
 	color:#006b1d;
@@ -149,6 +146,15 @@ h3 {
 }
 
 
+#contactform {
+	margin-top:-40px;
+	font-family:'Ubuntu',sans-serif;
+	color:#000;
+}
+
+#checklist {
+	list-style-type: none;
+}
 
 /* -----------------------------------------
    services.html
@@ -203,8 +209,6 @@ h4 {
 	color:#EB9125;
 	font-size: 32px;
 }
-
-
 
 
 /* -----------------------------------------
@@ -264,7 +268,8 @@ h4 {
 #info ul li {
 	font-size: 18px;
 	font-family:'Ubuntu',sans-serif;
-	}
+	
+}
 
 #image {
 	text-align: center;
@@ -311,6 +316,7 @@ h4 {
 ul {
 	font-size: 18px;
 	font-family:'Ubuntu',sans-serif;
+
 }
 
 #email-link {

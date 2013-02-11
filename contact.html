@@ -47,7 +47,7 @@
 
         <div class="row">
             <div id="main-info">
-                <div class="twelve columns">
+                <div class="six columns">
                     <h3><u>Contact Information:</u></h3>
 
                     <p><strong>Hoffman Lawn Care</strong></p>
@@ -61,7 +61,64 @@
                     <p><strong>Mailing Address:</strong> 3420 Broadmoor Ave SE, Kentwood, MI 49512</p>
                 </div>
             </div>
-          </div>
+          
+          
+          <div class="six columns">
+                <form method="post" action="send_form_email.php" id="contactform">
+                    <table width="450px">
+                        <tr>
+                            <td valign="top"><label for="full_name">Full Name *</label></td>
+
+                            <td valign="top"><input type="text" name="full_name" maxlength="100" size="30"></td>
+                        </tr>
+                        
+                        <tr>
+                            <td valign="top"><label for="phone">Phone Number *</label></td>
+
+                            <td valign="top"><input type="text" name="phone" maxlength="20" size="30"></td>
+                        </tr>
+
+                        <tr>
+                            <td valign="top"><label for="email">Email Address *</label></td>
+
+                            <td valign="top"><input type="text" name="email" maxlength="80" size="30"></td>
+                        </tr>
+                        
+                        <tr>
+                            <td valign="top"><label for="service-checkbox">Services *</label></td>
+
+                            <td>
+                            
+                            <ul id="checklist">
+	                            <li><input type="checkbox" name="services[]" value="Spring">Spring Services</li>  
+	                            <li><input type="checkbox" name="services[]" value="Summer">Summer Services</li>
+	                            <li><input type="checkbox" name="services[]" value="Fall">Fall Services</li>
+	                            <li><input type="checkbox" name="services[]" value="Winter">Snow Removal and Salting</li>
+	                            <li><input type="checkbox" name="services[]" value="Pruning">Pruning/Trimming Services</li>
+	                            <li><input type="checkbox" name="services[]" value="Fertilization">Fertilization</li>
+	                            <li><input type="checkbox" name="services[]" value="Other">Other</li>
+                            </ul>
+                            </td>
+                            </tr>
+                        
+                        <tr>
+                            <td valign="top"><label for="comments">Message</label></td>
+
+                            <td valign="top">
+                            <textarea name="message" maxlength="1000" cols="25" rows="6">
+</textarea></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                <input type="submit" value="Submit">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+
 
 
             <div class="row">
