@@ -20,15 +20,13 @@
     <link rel="stylesheet" href="stylesheets/foundation.css">
     <link rel="stylesheet" href="stylesheets/app.css">
     <link href='http://fonts.googleapis.com/css?family=Ubuntu|Exo:500' rel='stylesheet' type='text/css'>
-    <script src="javascripts/modernizr.foundation.js">
-</script>
-    <script src="javascripts/jquery.js">
-</script>
-    <script src="javascripts/foundation.min.js">
-</script><!-- Initialize JS Plugins -->
-
-    <script src="javascripts/app.js">
-</script>
+    <script src="javascripts/modernizr.foundation.js"></script>
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/foundation.min.js"></script>
+	<script src="javascripts/jquery.validate.js"></script>
+    <script src="javascripts/additional-methods.js"></script>
+    <script src="javascripts/jquery.form.js"></script>
+    <script src="javascripts/app.js"></script>
 </head>
 
 <body>
@@ -64,50 +62,51 @@
 
                     <p><strong>Fax:</strong> 616.977.5773</p>
 
-                    <p><strong>Mailing Address:</strong> 3420 Broadmoor Ave SE, Kentwood, MI 49512</p>
+                    <p><strong>Mailing Address:</strong> 3420 Broadmoor Ave SE, STE 6, Kentwood, MI 49512</p>
                 </div>
             </div>
 
             <div class="six columns">
-            	<div id="formResponse" style="display: none;"></div>
+                <div id="formResponse" style="display: none;"></div>
+
                 <form id="contactform">
                     <table width="450px">
                         <tr>
                             <td valign="top"><label for="full_name">Full Name *</label></td>
 
-                            <td valign="top"><input type="text" id="full_name" name="full_name" maxlength="100" size="30"></td>
+                            <td valign="top"><input type="text" id="full_name" name="full_name" size="30" placeholder="John Doe" ></td>
                         </tr>
 
                         <tr>
                             <td valign="top"><label for="phone">Phone Number *</label></td>
 
-                            <td valign="top"><input type="text" id="phone" name="phone" maxlength="20" size="30"></td>
+                            <td valign="top"><input type="text" id="phone" name="phone" size="30" placeholder="(xxx) xxx-xxxx"></td>
                         </tr>
 
                         <tr>
                             <td valign="top"><label for="email">Email Address *</label></td>
 
-                            <td valign="top"><input type="text" id="email" name="email" maxlength="80" size="30"></td>
+                            <td valign="top"><input type="text" id="email" name="email" size="30" placeholder="JohnDoe@example.com"></td>
                         </tr>
 
                         <tr>
-                            <td valign="top"><label for="service-checkbox">Services *</label></td>
+                            <td valign="top"><label for="service-checkbox">Services</label></td>
 
                             <td>
-                                <ul id="checklist">
-                                    <li><input type="checkbox" name="services[]" value="Spring">Spring Services</li>
+                                <ul id="services">
+                                    <li><input type="checkbox" name="services" value="Spring">Spring Services</li>
 
-                                    <li><input type="checkbox" name="services[]" value="Summer">Summer Services</li>
+                                    <li><input type="checkbox" name="services" value="Summer">Summer Services</li>
 
-                                    <li><input type="checkbox" name="services[]" value="Fall">Fall Services</li>
+                                    <li><input type="checkbox" name="services" value="Fall">Fall Services</li>
 
-                                    <li><input type="checkbox" name="services[]" value="Winter">Snow Removal and Salting</li>
+                                    <li><input type="checkbox" name="services" value="Winter">Snow Removal and Salting</li>
 
-                                    <li><input type="checkbox" name="services[]" value="Pruning">Pruning/Trimming Services</li>
+                                    <li><input type="checkbox" name="services" value="Pruning">Pruning/Trimming Services</li>
 
-                                    <li><input type="checkbox" name="services[]" value="Fertilization">Fertilization</li>
+                                    <li><input type="checkbox" name="services" value="Fertilization">Fertilization</li>
 
-                                    <li><input type="checkbox" name="services[]" value="Other">Other</li>
+                                    <li><input type="checkbox" name="services" value="Other">Other</li>
                                 </ul>
                             </td>
                         </tr>
@@ -116,14 +115,11 @@
                             <td valign="top"><label for="comments">Message</label></td>
 
                             <td valign="top">
-                            <textarea id="message" name="message" maxlength="1000" cols="25" rows="6">
+                            <textarea id="message" name="message" cols="25" rows="6">
 </textarea></td>
                         </tr>
-
-                        <tr>
-                            <td colspan="2" style="text-align:center"><input type="submit" value="Submit" name="myFormSubmitted"></td>
-                        </tr>
                     </table>
+                    <input type="submit" name="submit_button" value="Submit" class="secondary radius button" />
                 </form>
             </div>
         </div>
@@ -134,38 +130,83 @@
                     <h4>"For all of your property needs"</h4>
                 </div>
             </div>
-        </div><script type="text/javascript">
+        </div>
 
-        <!--jQuery Section-->
-        $("#contactform").submit(function() {
-                        
-            $.ajax({
-                type: 'POST',
-                url: 'sendemail.php',
-                data: 
-                    {
-                        full_name: $('#full_name').val(), 
-                        phone: $('#phone').val(), 
-                        email: $('#email').val(), 
-                        checkbox: $('input[name="services[]"]:checked'),
-                        message: $('#message').val()
-                    },
-                success: function(data) {
-                    if(data == "true") {
-                        $("#contactform").hide();
-                        $("#formResponse").html("<p>Success! Your message has been sent, thanks!<\/p>").fadeIn('100');
-                    } else {
-	                    alert("Email was not sent.  Please check your info agian.");
-                    }
-                }
-            });       
-                   
-            return false;
-        });
+        
+        
+		<script type="text/javascript">
+	
+		$(function() {
+		
+			$("#contactform").submit(function(event){
+	        	event.preventDefault();
+	        	submitForm();
+	        });
 
+		
+			$("#contactform").validate({
+	            rules: {
+	                full_name: {
+	                	required: true,
+	                	minlength: 2,
+	                	maxlength: 40, 
+	                	regex: /^[A-Za-z]{3,}$/
+	                },
+	                phone: {
+	                	required: true,
+	                	phoneUS: true,
+	                	regex: /^[2-9]\d{2}-\d{3}-\d{4}$/
+	                },
+	                email: {
+	                    required: true,
+	                    email: true,
+	                    regex: /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/
+	                }
+	            },
+	            messages: {
+	            	full_name: "Please enter a valid full name.",
+	                phone: "Please enter a valid US phone number.",
+	                email: "Please enter a valid email address."         
+	            },
+			});      
+        		        
+	        var submitForm = function() {
+		        
+		        var selectedServices = [];
+		            $('#services input:checked').each(function() {
+		            selectedServices.push(this.value);
+	            });
+	                        
+	            $.ajax({
+	                type: 'POST',
+	                url: 'sendemail.php',
+	                data: 
+	                    {
+	                        full_name: $('#full_name').val(), 
+	                        phone: $('#phone').val(), 
+	                        email: $('#email').val(), 
+	                        services: selectedServices,
+	                        message: $('#message').val()
+	                    },
+	                success: function(data) {
+	                    if(data == "true") {
+	                        $("#contactform").hide();
+	                        $("#formResponse").html("<p>Success! Your message has been sent, thanks!<\/p>").fadeIn('100');
+	                    } else {
+	                        //alert("Email was not sent.  Please check your info agian.");
+	                    }
+	                }
+	            });       
+		        
+	        }
+
+		});
+		
+       
         </script>
 
-        <div id="fb-root"></div><script>
+        <div id="fb-root"></div>
+        <script>
 (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -173,6 +214,19 @@
         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+        </script> 
+        
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-38443901-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
         </script>
     </div>
 </body>
