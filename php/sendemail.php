@@ -7,19 +7,26 @@ require_once("class.smtp.php"); // optional, gets called from within class.phpma
 $mail = new PHPMailer();
 
 // EDIT THE LINES BELOW AS REQUIRED
-$email_to = "adykstra@hoffmanlawncare.com";
+$email_to = "reed@hoffmanlawncare.com";
 $email_subject = "Website Contact/Quote Request";
-
-$mail->IsSMTP();            						// telling the class to use SMTP
-$mail->SMTPDebug  = 1;
-$mail->SMTPAuth   = 'true';           				// enable SMTP authentication
-$mail->Port       = 25;                  			// set the SMTP port
-$mail->Host       = 'smtpout.secureserver.net';     // SMTP server
-$mail->Username   = 'contact@hoffmanlawncare.com';  // SMTP account username
-$mail->Password   = 'jeffgordon24';      			// SMTP account password
 
 $mail->AddAddress($email_to);
 $mail->Subject = $email_subject;
+$mail->IsSMTP(); // telling the class to use SMTP
+$mail->SMTPDebug  = 1;
+    
+$useLive = $_POST['use_live'];
+if($useLive == true)
+{
+    $mail->Port       = 25;                  			          // set the SMTP port
+    $mail->Host       = 'relay-hosting.secureserver.net';   // Use GoDaddy's relay SMTP server
+} else {
+    $mail->SMTPAuth   = 'true';           				          // enable SMTP authentication
+    $mail->Port       = 25;                  			          // set the SMTP port
+    $mail->Host       = 'smtpout.secureserver.net';         // SMTP server
+    $mail->Username   = 'contact@hoffmanlawncare.com';      // SMTP account username
+    $mail->Password   = 'jeffgordon24';      			          // SMTP account password
+}
 
 if(isset($_POST['email'])) {
 
@@ -47,23 +54,23 @@ if(isset($_POST['email'])) {
 	$email_message .=  "<table>";
 	$email_message .=  "<tr>";
 	$email_message .=  "<td style='width: 200px'><strong>Full Name:</strong></td>";
-	$email_message .=  "</td>".clean_string($full_name)."</td>";
+	$email_message .=  "<td>".clean_string($full_name)."</td>";
 	$email_message .=  "</tr>";
 	$email_message .=  "<tr>";
 	$email_message .=  "<td style='width: 200px'><strong>Phone Number:</strong></td>";
-	$email_message .=  "</td>".clean_string($phone)."</td>";
+	$email_message .=  "<td>".clean_string($phone)."</td>";
 	$email_message .=  "</tr>";
 	$email_message .=  "<tr>";
 	$email_message .=  "<td style='width: 200px'><strong>Email:</strong</td>";
-	$email_message .=  "</td>".clean_string($email_from)."</td>";
+	$email_message .=  "<td>".clean_string($email_from)."</td>";
 	$email_message .=  "</tr>";
 	$email_message .=  "<tr>";
 	$email_message .=  "<td style='width: 200px'><strong>Services Needed:</strong></td>";
-	$email_message .=  "</td>".to_service_list($_POST['services'])."</td>";
+	$email_message .=  "<td>".to_service_list($_POST['services'])."</td>";
 	$email_message .=  "</tr>";
 	$email_message .=  "<tr>";
 	$email_message .=  "<td valign='top' style='width: 200px'><strong>Message:</strong></td>";
-	$email_message .=  "</td>".clean_string($message)."</td>";
+	$email_message .=  "<td>".clean_string($message)."</td>";
 	$email_message .=  "</tr>";
 	$email_message .=  "</table>";
 	
@@ -72,7 +79,7 @@ if(isset($_POST['email'])) {
 	$mail->MsgHTML($email_message);
 
 	$mail->AddReplyTo($_POST['email'],$_POST['full_name']);
-	$mail->From       = 'contact@hoffmanlawncare.com';
+  $mail->From       = 'contact@hoffmanlawncare.com';
 	$mail->FromName   = 'HoffmanLawnCare.com';
 
 	if(!$mail->Send()) {
