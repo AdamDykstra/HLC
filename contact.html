@@ -33,10 +33,10 @@
     <div id="page">
         <div class="row header">
             <div class="twelve columns">
-                <div id="logo"><img src="Images/logo.png" alt="logo"></div><a id="contact-us-link" href="contact.html">Contact Us!</a>
+                <div id="logo"><img src="images/logo.png" alt="logo"></div><a id="contact-us-link" href="contact.html">Contact Us!</a>
             </div>
 
-            <div id="skyline-divider"><img src="Images/cityscape.png" alt="cityscape"></div>
+            <div id="skyline-divider"><img src="images/cityscape.png" alt="cityscape"></div>
         </div>
 
         <div class="row">
@@ -86,7 +86,7 @@
                         <tr>
                             <td valign="top"><label for="email">Email Address *</label></td>
 
-                            <td valign="top"><input type="text" id="email" name="email" size="30" placeholder="JohnDoe@example.com"></td>
+                            <td valign="top"><input type="text" id="email" name="email" size="30" placeholder="John_Doe@example.com"></td>
                         </tr>
 
                         <tr>
@@ -179,7 +179,7 @@
 	                        
 	            $.ajax({
 	                type: 'POST',
-	                url: 'sendemail.php',
+	                url: 'php/sendemail.php',
 	                data: 
 	                    {
 	                        full_name: $('#full_name').val(), 
@@ -193,7 +193,7 @@
 	                        $("#contactform").hide();
 	                        $("#formResponse").html("<p>Success! Your message has been sent, thanks!<\/p>").fadeIn('100');
 	                    } else {
-	                        //alert("Email was not sent.  Please check your info agian.");
+	                        alert("Email was not sent.  Please check your info agian.");
 	                    }
 	                }
 	            });       

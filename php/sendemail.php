@@ -7,16 +7,16 @@ require_once("class.smtp.php"); // optional, gets called from within class.phpma
 $mail = new PHPMailer();
 
 // EDIT THE LINES BELOW AS REQUIRED
-$email_to = "adam@smrtwaresolutions.com";
+$email_to = "adykstra@hoffmanlawncare.com";
 $email_subject = "Website Contact/Quote Request";
 
-$mail->IsSMTP();            // telling the class to use SMTP
+$mail->IsSMTP();            						// telling the class to use SMTP
 $mail->SMTPDebug  = 1;
-$mail->SMTPAuth   = 'true';           // enable SMTP authentication
-$mail->Port       = 25;                  // set the SMTP port
-$mail->Host       = 'mail.smrtwaresolutions.com';    // SMTP server
-$mail->Username   = 'noreply@smrtwaresolutions.com';  // SMTP account username
-$mail->Password   = 'Keqa4VVj3hUsnu';      // SMTP account password
+$mail->SMTPAuth   = 'true';           				// enable SMTP authentication
+$mail->Port       = 25;                  			// set the SMTP port
+$mail->Host       = 'smtpout.secureserver.net';     // SMTP server
+$mail->Username   = 'contact@hoffmanlawncare.com';  // SMTP account username
+$mail->Password   = 'jeffgordon24';      			// SMTP account password
 
 $mail->AddAddress($email_to);
 $mail->Subject = $email_subject;
@@ -28,20 +28,6 @@ if(isset($_POST['email'])) {
 	$email_from = $_POST['email']; // required
 	$message = $_POST['message']; // not required
 	
-	$error_message = "";
-	$email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
-	if(!preg_match($email_exp,$email_from)) {
-		$error_message .= 'The Email Address you entered does not appear to be valid.<br />';
-	}
-	$string_exp = "/^[A-Za-z .'-]+$/";
-	if(!preg_match($string_exp,$full_name)) {
-		$error_message .= 'The Full Name you entered does not appear to be valid.<br />';
-	}
-	if(strlen($error_message) > 0) {
-		died($error_message);
-	}
-	$email_message = "<u>You have a new contact request from HoffmanLawnCare.com - Details Below</u>\n\n";
-
 	function clean_string($string) {
 		$bad = array("content-type","bcc:","to:","cc:","href");
 		return str_replace($bad,"",$string);
@@ -86,8 +72,8 @@ if(isset($_POST['email'])) {
 	$mail->MsgHTML($email_message);
 
 	$mail->AddReplyTo($_POST['email'],$_POST['full_name']);
-	$mail->From       = $_POST['email'];
-	$mail->FromName   = $_POST['full_name'];
+	$mail->From       = 'contact@hoffmanlawncare.com';
+	$mail->FromName   = 'HoffmanLawnCare.com';
 
 	if(!$mail->Send()) {
 		echo "false";
